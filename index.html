@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Competition — Moklet Mengajar</title>
+  <meta name="description" content="Platform Quiz Competition profesional, modern, dan responsif untuk kompetisi langsung Moklet Mengajar.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Background Ambient Glow & Grid -->
+  <div class="bg-pattern" aria-hidden="true"></div>
+
+  <!-- Main Container -->
+  <div class="app-layout">
+
+    <!-- Header Navigation -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="brand-group">
+          <div class="brand-logo" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+              <path d="M4 22h16"></path>
+              <path d="M10 14.66V17c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-2.34"></path>
+              <path d="M14 14.66V17c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-2.34"></path>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 class="brand-title" id="header-comp-title">Moklet Mengajar</h1>
+            <span class="brand-badge">COMPETITION PORTAL</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Audio Toggle Button -->
+          <button type="button" id="btn-toggle-sound" class="btn-sound-toggle" aria-label="Aktifkan atau matikan suara">
+            <span class="sound-icon-wrapper" aria-hidden="true">
+              <!-- Speaker ON -->
+              <svg id="icon-sound-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+              <!-- Speaker MUTED -->
+              <svg id="icon-sound-off" class="is-hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            </span>
+            <span id="sound-status-label" class="sound-status-text">Sound: ON</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-main" id="main-content">
+
+      <!-- ========================================== -->
+      <!-- VIEW 1: START SCREEN (ENTER TEAM NAME)     -->
+      <!-- ========================================== -->
+      <section id="view-start" class="view-panel active">
+        <div class="start-card">
+          <div class="start-badge-pill">
+            <span class="pulse-dot"></span>
+            LIVE COMPETITION PORTAL
+          </div>
+
+          <h2 class="start-hero-title" id="start-comp-title">Moklet Mengajar Quiz Competition</h2>
+          <p class="start-hero-desc" id="start-comp-desc">Test Your Knowledge, Speed & Accuracy</p>
+
+          <!-- Competition Rule Quick Info -->
+          <div class="rules-summary-box">
+            <div class="rule-item">
+              <span class="rule-icon">🎯</span>
+              <div>
+                <strong>Single Answer (100 Poin — 15 Detik):</strong> Pilih 1 jawaban lalu tekan konfirmasi sebelum waktu habis.
+              </div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-icon">⚖️</span>
+              <div>
+                <strong>Multiple Answer (100 Poin — 30 Detik):</strong> Pilih semua jawaban benar. Penilaian proporsional berdasarkan jawaban benar dikurangi salah.
+              </div>
+            </div>
+          </div>
+
+          <!-- Team Name Form -->
+          <form id="form-start-quiz" class="start-form" novalidate>
+            <div class="form-group">
+              <label for="input-team-name" class="form-label">Nama Tim Peserta</label>
+              <div class="input-wrapper">
+                <div class="input-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <input 
+                  type="text" 
+                  id="input-team-name" 
+                  class="form-control" 
+                  placeholder="Enter Team Name" 
+                  autocomplete="off" 
+                  maxlength="50"
+                  required
+                >
+              </div>
+              <!-- Inline Validation Message -->
+              <div id="start-validation-msg" class="validation-message" role="alert" aria-live="polite"></div>
+            </div>
+
+            <button type="submit" id="btn-start-quiz" class="btn btn-primary btn-block btn-lg">
+              <span>Start Quiz</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </form>
+
+          <footer class="start-footer-note">
+            Pastikan nama tim sudah sesuai sebelum memulai. Sesi quiz berjalan berurutan.
+          </footer>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 2: QUIZ SCREEN (ACTIVE QUESTION)      -->
+      <!-- ========================================== -->
+      <section id="view-quiz" class="view-panel" aria-live="polite">
+        
+        <!-- Quiz HUD (Status & Progress) -->
+        <div class="quiz-hud">
+          <div class="hud-top">
+            <div class="team-badge" id="hud-team-name">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span id="current-team-display">Team Alpha</span>
+            </div>
+
+            <div class="progress-info">
+              <span class="progress-step-text" id="progress-text">Question 1 of 10</span>
+              <span class="progress-percent-badge" id="progress-percent">10%</span>
+            </div>
+          </div>
+
+          <div class="progress-track" aria-label="Progress kuis">
+            <div class="progress-bar-fill" id="progress-bar-fill" style="width: 10%;"></div>
+          </div>
+        </div>
+
+        <!-- Question Card -->
+        <article class="question-card" id="question-card">
+          
+          <header class="question-header">
+            <div class="question-meta-tags">
+              <span class="meta-tag type-tag" id="question-type-badge">Single Answer</span>
+              <span class="meta-tag points-tag" id="question-points-badge">100 Points</span>
+              <span class="meta-tag timer-tag" id="question-timer-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span id="timer-text">15s</span>
+              </span>
+            </div>
+            <h2 class="question-text" id="question-text">Memuat pertanyaan...</h2>
+            <p class="question-instruction" id="question-instruction">Pilih satu jawaban di bawah ini, lalu klik tombol konfirmasi.</p>
+          </header>
+
+          <!-- Options Container -->
+          <div class="options-container" id="options-container" role="group" aria-label="Pilihan jawaban">
+            <!-- Pilihan jawaban di-render secara dinamis oleh JavaScript -->
+          </div>
+
+          <!-- Bottom Action Area for Multiple Choice Verification -->
+          <div id="multiple-verify-bar" class="multiple-verify-bar is-hidden">
+            <div class="verify-instruction-box">
+              <span id="multiple-selected-count">0 opsi dipilih</span>
+            </div>
+            <button type="button" id="btn-verify-multiple" class="btn btn-primary" disabled>
+              <span>Verify Answers</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Feedback Box -->
+          <section id="feedback-box" class="feedback-box is-hidden" aria-live="assertive">
+            <div class="feedback-header">
+              <div class="feedback-status" id="feedback-status">
+                <span class="feedback-icon" id="feedback-icon">✓</span>
+                <span class="feedback-title" id="feedback-title">Correct Answer!</span>
+              </div>
+              <span class="feedback-score-pill" id="feedback-score-pill">+100 Poin</span>
+            </div>
+            <div class="feedback-body" id="feedback-explanation">
+              <!-- Penjelasan jawaban -->
+            </div>
+          </section>
+
+          <!-- Next Question Footer Action -->
+          <footer class="question-footer">
+            <button type="button" id="btn-next-question" class="btn btn-next is-hidden">
+              <span id="btn-next-label">Next Question</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </footer>
+
+        </article>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- VIEW 3: RESULT SCREEN                      -->
+      <!-- ========================================== -->
+      <section id="view-result" class="view-panel">
+        
+        <div class="result-outer-container">
+          
+          <!-- OFFICIAL SCORE CARD (TARGET FOR PNG EXPORT) -->
+          <div class="result-card" id="result-card">
+            
+            <header class="result-header">
+              <div class="result-crest">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D32F2F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                  <path d="M4 22h16"></path>
+                  <path d="M10 14.66V17c0 .55-.45 1-1 1H7c-.55 0-1-.45-1-1v-2.34"></path>
+                  <path d="M14 14.66V17c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-2.34"></path>
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                </svg>
+              </div>
+              <div class="result-title-group">
+                <h2 class="result-comp-name" id="result-comp-name">Moklet Mengajar Quiz Competition</h2>
+                <div class="result-subtitle">Official Score Certificate & Record</div>
+              </div>
+            </header>
+
+            <div class="result-divider"></div>
+
+            <!-- Team Name Banner -->
+            <div class="result-team-section">
+              <span class="result-team-label">NAMA TIM PESERTA</span>
+              <h3 class="result-team-name" id="result-team-display">Team Alpha</h3>
+            </div>
+
+            <!-- Score Showcase -->
+            <div class="result-score-block">
+              <div class="result-score-value">
+                <span class="score-main" id="result-total-score">850</span>
+                <span class="score-max" id="result-max-score">/ 1,000 Points</span>
+              </div>
+              <div class="result-score-percent-badge" id="result-percentage-badge">
+                85% Accuracy
+              </div>
+            </div>
+
+            <!-- Detailed Stats Grid -->
+            <div class="result-stats-grid">
+              <div class="stat-box">
+                <div class="stat-box-label">Total Soal</div>
+                <div class="stat-box-value" id="stat-total-questions">10</div>
+              </div>
+              <div class="stat-box stat-correct">
+                <div class="stat-box-label">Jawaban Benar</div>
+                <div class="stat-box-value" id="stat-correct-count">8</div>
+              </div>
+              <div class="stat-box stat-incorrect">
+                <div class="stat-box-label">Salah / Parsial</div>
+                <div class="stat-box-value" id="stat-incorrect-count">2</div>
+              </div>
+              <div class="stat-box stat-date">
+                <div class="stat-box-label">Waktu Selesai</div>
+                <div class="stat-box-value" id="stat-timestamp">25 Okt 2026, 15:45 WIB</div>
+              </div>
+            </div>
+
+            <!-- Security & Verification Seal -->
+            <footer class="result-footer-seal">
+              <div class="seal-badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <polyline points="9 12 11 14 15 10"></polyline>
+                </svg>
+                <span>VERIFIED OFFICIAL RESULT</span>
+              </div>
+              <div class="seal-serial" id="result-serial-id">CERT-MMQ-2026-0001</div>
+            </footer>
+
+          </div>
+          <!-- END OFFICIAL SCORE CARD -->
+
+          <!-- Result Actions Bar (Not exported to PNG) -->
+          <div class="result-actions-bar">
+            
+            <button type="button" id="btn-print-result" class="btn btn-print btn-lg">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span id="btn-print-text">Print Result (Download PNG)</span>
+            </button>
+
+            <button type="button" id="btn-restart-quiz" class="btn btn-secondary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+              </svg>
+              <span>Mulai Sesi Baru</span>
+            </button>
+
+          </div>
+
+          <!-- Status Toast for Export Notification -->
+          <div id="export-status" class="export-status-toast is-hidden" role="status" aria-live="polite">
+            <div class="status-spinner" id="export-spinner"></div>
+            <span id="export-status-text">Memproses gambar hasil...</span>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Confirmation Modal for Restart -->
+    <div id="modal-restart" class="modal-backdrop is-hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-card">
+        <h3 id="modal-title" class="modal-title">Konfirmasi Sesi Baru</h3>
+        <p class="modal-body">
+          Apakah Anda yakin ingin memulai sesi quiz baru? Pastikan Anda sudah mengunduh gambar hasil (Print Result) sebelum mengulang.
+        </p>
+        <div class="modal-actions">
+          <button type="button" id="btn-modal-cancel" class="btn btn-secondary">Batal</button>
+          <button type="button" id="btn-modal-confirm" class="btn btn-primary">Ya, Mulai Baru</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Client-side Scripts -->
+  <!-- 1. Questions Configuration -->
+  <script src="js/questions.js"></script>
+  <!-- 2. Local html2canvas Library for 100% Offline PNG Generation -->
+  <script src="js/html2canvas.min.js"></script>
+  <!-- 3. Main Application Logic -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>
